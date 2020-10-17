@@ -1,0 +1,174 @@
+.metric-measure {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 5px 5px 0;
+}
+
+.metric-measure-main {
+  display: block;
+  margin-top: 10px;
+}
+
+.metric-label {
+  display: block;
+  line-height: 1.2;
+  font-weight: 300;
+}
+
+.color-OK {
+  border: 2px solid #85bb43!important;
+  color: #85bb43!important;
+}
+.color-WARN {
+  border: 2px solid #f90!important;
+  color: #f90!important;
+}
+.color-ERROR {
+  border: 2px solid #d4333f!important;
+  color: #d4333f!important;
+}
+
+.alertbox {
+  margin: 2px;
+  text-align: left;
+  padding: 0 0 0 0;
+}
+
+.metric-span {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 0 10px;
+}
+
+.alert-ERROR {
+  background-color: #d4333f;
+  color: #fff;
+  margin: 0;
+}
+
+.alert-WARN {
+  background-color: #f90;
+  color: #fff;
+  margin: 0;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sqale {
+  display: inline-block;
+  width: 1em;
+  height: 1.3em;
+  line-height: 1.3;
+  color: #fff;
+  font-weight: 300;
+  text-align: center;
+}
+
+.blocker {
+  display: inline-block;
+  background: url(/img/blocker.png) no-repeat;
+  width: 16px;
+  height: 16px;
+}
+
+.critical {
+  display: inline-block;
+  background: url(/img/critical.png) no-repeat;
+  width: 16px;
+  height: 16px;
+}
+
+.major {
+  display: inline-block;
+  background: url(/img/major.png) no-repeat;
+  width: 16px;
+  height: 16px;
+}
+
+.minor {
+  display: inline-block;
+  background: url(/img/minor.png) no-repeat;
+  width: 16px;
+  height: 16px;
+}
+
+.info {
+  display: inline-block;
+  background: url(/img/info.png) no-repeat;
+  width: 16px;
+  height: 16px;
+}
+
+.sqale-A {
+  background-color: #00AA00;
+}
+
+.sqale-B {
+  background-color: #80CC00;
+}
+
+.sqale-C {
+  background-color: #FFEE00;
+}
+
+.sqale-D {
+  background-color: #F77700;
+}
+
+.sqale-E {
+  background-color: #EE0000;
+}
+
+.right {
+  text-align: right;
+}
+.thin {
+  width: 1%;
+}
+
+.metric-span-5 {
+  width: 41.666666666%;
+}
+
+.metric-span-6 {
+  width: 50%;
+}
+
+.metric-span-7 {
+  width: 58.333333333%;
+}
+
+.widget {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px;
+  margin: 0;
+}
+
+.metric-container {
+  margin: -10px 0;
+}
+
+* {
+  font-size: 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  font-family: "Lato","Helvetica Neue",Arial,sans-serif;
+  font-size: 1rem;
+  color: #5f6062;
+}
+
+.repo-overview {
+  min-width: 700px;
+  height: 250px;
+  padding: 10px;
+  margin: 0;
+}

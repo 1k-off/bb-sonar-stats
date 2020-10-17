@@ -1,0 +1,18 @@
+{{define "panel_error"}}
+<!doctype html>
+    <head>
+        <title>Sonarqube stats for Bitbucket Cloud</title>
+        <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+    </head>
+    <body class="aui-page-hybrid">
+    <section id="content" role="main">
+        <table>
+            <tr>
+                <td>{{.ErrorMessage}}</td>
+            </tr>
+        </table>
+    </section>
+    <script src="https://bitbucket.org/atlassian-connect/all.js" type="text/javascript"></script>
+    </body>
+</html>
+{{end}}

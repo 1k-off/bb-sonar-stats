@@ -1,0 +1,267 @@
+{{define "panel"}}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sonarqube stats for Bitbucket Cloud</title>
+    <link rel="stylesheet" href="https://aui-cdn.atlassian.com/aui-adg/6.0.9/css/aui.css" media="all">
+    <link rel="stylesheet" href="https://aui-cdn.atlassian.com/aui-adg/6.0.9/css/aui-experimental.css" media="all">
+    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+</head>
+<body class="aui-page-hybrid">
+    <section id="content" role="main">
+        <div class="repo-overview">
+            <div class="row">
+                <div class="metric-span metric-span-6">
+                    <div class="metric-span metric-span-6" style="float:left">
+                        <div class="metric-container">
+                            <div class="metric-measure metric-measure-main color-{{.SonarQualityGateColor}}">
+                                <div style="margin: 2px">{{.SonarQualityGateStatus}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-span metric-span-6">
+                        <div class="metric-container">
+                            <div class="metric-measure metric-measure-main">
+                                <span class="metric-label">Lines of code</span>
+                                <span class="nowrap">
+                        <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/ncloc/list?id={{.SonarProjectKey}}">{{.SonarLinesOfCodeValue}}</a>
+                    </span>
+                            </div>
+                            <div class="metric-measure">
+                                <span class="metric-label"> Files</span>
+                                <span class="nowrap">
+                        <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/files/list?id={{.SonarProjectKey}}">{{.SonarFilesValue}}</a>
+                    </span>
+                            </div>
+
+                            <div class="metric-measure">
+                                <span class="metric-label"> Functions</span>
+                                <span class="nowrap">
+                        <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/functions/list?id={{.SonarProjectKey}}">{{.SonarFunctionsValue}}</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-span metric-span-6" style="float:right">
+                    <div class="metric-span metric-span-6" style="float:left">
+                        <div class="metric-container">
+                            <div class="metric-measure metric-measure-main">
+                                <span class="metric-label">Duplications</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/duplicated_lines_density/list?id={{.SonarProjectKey}}">{{.SonarDuplicationsValue}}</a>
+                                %
+                        </span>
+                            </div>
+                            <div class="metric-measure">
+                                <span class="metric-label"> Lines</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/duplicated_lines/list?id={{.SonarProjectKey}}">{{.SonarDuplicationsLinesValue}}</a>
+                        </span>
+                            </div>
+
+                            <div class="metric-measure">
+                                <span class="metric-label"> Blocks</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/duplicated_blocks/list?id={{.SonarProjectKey}}">{{.SonarDuplicationsBlocksValue}}</a>
+                        </span>
+                            </div>
+
+                            <div class="metric-measure">
+                                <span class="metric-label"> Files</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/duplicated_files/list?id={{.SonarProjectKey}}">{{.SonarDuplicationsFilesValue}}</a>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-span metric-span-6">
+                        <div class="metric-container">
+                            <div class="metric-measure" style="margin-top: 10px;">
+                                <span class="metric-label">SQALE</span>
+                                <span class="nowrap">
+                                    <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/sqale_rating/list?id={{.SonarProjectKey}}">
+                                    <span class="sqale {{.SonarSqaleColor}}">
+                                        {{.SonarSqaleValue}}
+                                    </span>
+                                    </a>
+                        </span>
+                            </div>
+                            <div class="metric-measure" style="margin-top: 10px;">
+                                <span class="metric-label">Debt Ratio</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/sqale_debt_ratio/list?id={{.SonarProjectKey}}">{{.SonarDebtRatioValue}}</a>
+                                %
+                        </span>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="metric-measure">
+                                <span class="metric-label">Debt</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/sqale_index/list?id={{.SonarProjectKey}}">{{.SonarDebtValue}}</a>
+                        </span>
+                            </div>
+                            <div class="metric-measure">
+                                <span class="metric-label">Issues</span>
+                                <span class="nowrap">
+                            <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/violations/list?id={{.SonarProjectKey}}">{{.SonarIssuesValue}}</a>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="metric-span metric-span-6">
+                        <div class="metric-span metric-span-6" style="float:left">
+                            <div class="metric-container">
+                                <div class="metric-measure metric-measure-main">
+                                    <span class="metric-label">Unit test coverage</span>
+                                    <span class="nowrap">
+                        <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/coverage/list?id={{.SonarProjectKey}}">{{.SonarTestCoverageValue}}</a> %
+                    </span>
+                                </div>
+                                <div class="metric-measure">
+                                    <span class="metric-label"> line cov.</span>
+                                    <span class="nowrap">
+                        <a target="_blank" href="{{.SonarServerUrl}}/component_measures/metric/line_coverage/list?id={{.SonarProjectKey}}">{{.SonarLineCoverageValue}}</a> %
+                    </span>
+                                </div>
+
+                                <div class="metric-measure">
+                                    <span class="metric-label"> condition cov.</span>
+                                    <span class="nowrap">
+                        {{.SonarConditionsToCoverValue}} %
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="metric-span metric-span-6">
+                            <div class="metric-container">
+                                <div class="metric-measure metric-measure-main">
+                                    <span class="metric-label">Unit test success</span>
+                                    <span class="nowrap">
+                            {{.SonarUnitTestSuccessValue}} %
+                        </span>
+                                </div>
+                                <div class="metric-measure">
+                                    <span class="metric-label"> failures</span>
+                                    <span class="nowrap">
+                    {{.SonarUnitTestFailuresValue}}
+                </span>
+                                </div>
+                                <div class="metric-measure">
+                                    <span class="metric-label"> errors</span>
+                                    <span class="nowrap">
+                    {{.SonarUnitTestErrorsValue}}
+                </span>
+                                </div>
+                                <div class="metric-measure">
+                                    <span class="metric-label"> tests</span>
+                                    <span class="nowrap">
+                    {{.SonarUnitTestTestsValue}}
+                </span>
+                                </div>
+                                <div class="metric-measure">
+                                    <span class="metric-label"> skipped</span>
+                                    <span class="nowrap">
+                    {{.SonarUnitTestSkippedValue}}
+                </span>
+                                </div>
+                                <div class="metric-measure">
+                                    <span class="metric-label">time</span>
+                                    <span class="nowrap">
+                            {{.SonarUnitTestTimeValue}}
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-container">
+                            <div class="metric-measure metric-measure-main">
+                                <div class="metric-measure metric-measure-main">
+                                    <div class="metric-measure metric-measure-main">
+                                        <br>
+                                        <span class="metric-label">
+                                    <a target="_blank" href="{{.SonarServerUrl}}/dashboard?id={{.SonarProjectKey}}">
+                                <strong>{{.SonarProjectKey}}</strong>
+                                </a>
+
+                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-span metric-span-6" style="float:right">
+                        <div class="metric-span metric-span-5" style="float:left">
+                            <div class="metric-container">
+                                <div class="metric-measure" style="margin-top: 10px;">
+                                    <table class="data widget-barchar">
+                                        <tbody>
+                                        <tr>
+                                            <td class="thin nowrap"><i class="blocker"></i> Blocker</td>
+                                            <td class="thin right nowrap">
+                                                <a target="_blank" href="{{.SonarServerUrl}}/project/issues?id={{.SonarProjectKey}}&resolved=false&severities=BLOCKER">
+                                                    {{.SonarBlockerValue}}
+                                                </a>
+                                            </td>
+                                            <td class="thin nowrap">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thin nowrap"><i class="critical"></i> Critical</td>
+                                            <td class="thin right nowrap">
+                                                <a target="_blank" href="{{.SonarServerUrl}}/project/issues?id={{.SonarProjectKey}}&resolved=false&severities=CRITICAL">
+                                                    {{.SonarCriticalValue}}
+                                                </a>
+                                            </td>
+                                            <td class="thin nowrap">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thin nowrap"><i class="major"></i> Major</td>
+                                            <td class="thin right nowrap">
+                                                <a target="_blank" href="{{.SonarServerUrl}}/project/issues?id={{.SonarProjectKey}}&resolved=false&severities=MAJOR">
+                                                    {{.SonarMajorValue}}
+                                                </a>
+                                            </td>
+                                            <td class="thin nowrap">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thin nowrap"><i class="minor"></i> Minor</td>
+                                            <td class="thin right nowrap">
+                                                <a target="_blank" href="{{.SonarServerUrl}}/project/issues?id={{.SonarProjectKey}}&resolved=false&severities=MINOR">
+                                                    {{.SonarMinorValue}}
+                                                </a>
+                                            </td>
+                                            <td class="thin nowrap">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thin nowrap"><i class="info"></i> Info</td>
+                                            <td class="thin right nowrap">
+                                                <a target="_blank" href="{{.SonarServerUrl}}/project/issues?id={{.SonarProjectKey}}&resolved=false&severities=INFO">
+                                                    {{.SonarInfoValue}}
+                                                </a>
+                                            </td>
+                                            <td class="thin nowrap">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <script src="https://bitbucket.org/atlassian-connect/all.js" type="text/javascript"></script>
+    </body>
+</html>
+{{end}}
