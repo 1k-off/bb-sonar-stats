@@ -2,5 +2,6 @@
 .idea/
 
 config.toml
+bb-sonarqube-integration.exe
+bb-sonarqube-integration
 
-README.md
