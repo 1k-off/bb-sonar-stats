@@ -78,8 +78,8 @@ func (c *Context) stats(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	lp := path.Join(templatesPath, "panel.hbs")
 	repo := strings.Split(r.URL.Query().Get("repoPath"), "/")
-	c.RepoOwner, c.RepoName = repo[0], repo[1]
-	c.SonarServerUrl, c.SonarToken, c.SonarProjectKey = c.GetSonarData(c.RepoOwner, c.RepoName, c.Config.RepoBranch, c.Config.SonarConfigPath)
+	repoOwner, repoName := repo[0], repo[1]
+	c.SonarServerUrl, c.SonarToken, c.SonarProjectKey = c.GetSonarData(repoOwner, repoName, c.Config.RepoBranch, c.Config.SonarConfigPath)
 	if c.SonarServerUrl != "" && c.SonarProjectKey != "" {
 		s := sonarqube.SonarNewClient(c.SonarServerUrl, c.SonarToken, c.SonarProjectKey)
 		stats, err := s.GetStats()

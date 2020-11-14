@@ -36,7 +36,7 @@ func SonarNewClient(server, token, projectKey string) *Sonar {
 }
 
 // GetStats is a function to collect all stats from different endpoints to one structure.
-func (s *Sonar) GetStats() (SonarStats, error){
+func (s *Sonar) GetStats() (SonarStats, error) {
 	if err := s.checkIfProjectExist(); err != nil {
 		return SonarStats{}, err
 	}
@@ -84,30 +84,30 @@ func (s *Sonar) GetStats() (SonarStats, error){
 }
 
 func (s *Sonar) checkIfProjectExist() error {
-	type ProjectResponce struct {
-		Components []struct {
-			Key              string `json:"key"`
-		} `json:"components"`
-	}
-	var (
-		response ProjectResponce
-	)
-	path := "/api/projects/search?projects=" + s.Config.ProjectKey
-	req := s.Client.NewHTTPRequest(http.MethodGet, path, nil)
-	resp, err := s.Client.Do(req)
-	if resp.StatusCode == 401 {
-		return errors.New(fmt.Sprintf("Can't pass authorization to server %s with provided token", s.Config.Server))
-	}
-	if err != nil {
-		return err
+	path := "/api/project_analyses/search?project=" + s.Config.ProjectKey
+	client := &http.Client{}
+	req, _ := http.NewRequest(http.MethodGet, s.Config.Server+path, nil)
+	resp, _ := client.Do(req)
+	if resp.StatusCode == 200 {
+		s.Client.Config.Token = ""
+		return nil
 	} else {
-		body, _ := ioutil.ReadAll(resp.Body)
-		defer resp.Body.Close()
-		_ = json.Unmarshal(body, &response)
-		if len(response.Components) == 0 {
-			return errors.New(fmt.Sprintf("Project %s is not exist", s.Config.ProjectKey))
+		if (resp.StatusCode == 401) || (resp.StatusCode == 403)  {
+			req := s.Client.NewHTTPRequest(http.MethodGet, path, nil)
+			resp, _ := s.Client.Do(req)
+			if resp.StatusCode == 200 {
+				return nil
+			} else if resp.StatusCode == 401 {
+				return errors.New(fmt.Sprintf("Can't pass authorization to server %s with provided token", s.Config.Server))
+			} else {
+				body, _ := ioutil.ReadAll(resp.Body)
+				return errors.New(fmt.Sprintf("Unhandled error. \n", string(body)))
+			}
+		} else if resp.StatusCode == 404 {
+			return errors.New(fmt.Sprintf("Can't find project with id %s on server", s.Config.ProjectKey))
 		} else {
-			return nil
+			body, _ := ioutil.ReadAll(resp.Body)
+			return errors.New(fmt.Sprintf("Unhandled error. \n", string(body)))
 		}
 	}
 }
