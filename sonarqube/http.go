@@ -32,10 +32,12 @@ func NewHTTPClient(server, token string) *SonarHTTPClient {
 
 // NewReq is a wrapper for http NewRequest method to set headers once
 func (c *SonarHTTPClient) NewHTTPRequest(method, path string, body io.Reader) *http.Request {
-	sonarAuthString := Base64Encode(c.Config.Token + ":")
 	url := c.Config.Server + path
 	req, _ := http.NewRequest(method, url, body)
-	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", sonarAuthString))
+	if c.Config.Token != "" {
+		sonarAuthString := Base64Encode(c.Config.Token + ":")
+		req.Header.Add("Authorization", fmt.Sprintf("Basic %s", sonarAuthString))
+	}
 	return req
 }
 
@@ -96,7 +98,6 @@ func SonarEndpoint() *Endpoint {
 }
 
 // AddQueryParams is a function to add query params to url.
-// TODO: rewrite this for any count of input params
 func AddQueryParams(path, projectKey, metricKey string) string {
 	pathStr, _ := url.Parse(path)
 	query, _ := url.ParseQuery(pathStr.RawQuery)

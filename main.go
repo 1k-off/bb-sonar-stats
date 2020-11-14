@@ -9,8 +9,6 @@ import (
 type Context struct {
 	Config               *Config
 	Logger *logrus.Logger
-	RepoOwner            string
-	RepoName             string
 	SonarServerUrl       string
 	SonarProjectKey      string
 	SonarToken           string
