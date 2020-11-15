@@ -34,7 +34,7 @@ Please note that in order to have this app available in all repositories of your
 3. `docker run -itd -v </path/to/config.toml>/config.toml:/app/config.toml -p <app_port>:9001 1node/bb-sonar-stats:latest`
 
 `config.toml` example: 
-```toml
+```
 baseUrl = https://bb-sonar-stats.1node.xyz
 port = 8080
 logLevel = "info"

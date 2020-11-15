@@ -26,6 +26,10 @@ func main() {
 	if _, err := toml.DecodeFile("./config.toml", config); err != nil {
 		log.Fatalln(err)
 	}
+	if err := config.CheckRequiredValues(); err != nil {
+		log.Fatalln(err)
+	}
+	
 	c := &Context{
 		Config:               config,
 		Logger: logrus.New(),

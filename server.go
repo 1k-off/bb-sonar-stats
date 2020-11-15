@@ -41,6 +41,7 @@ func (c *Context) healthcheck(w http.ResponseWriter, r *http.Request) {
 func (c *Context) atlassianConnect(w http.ResponseWriter, r *http.Request) {
 	lp := path.Join("./templates", "atlassian-connect.json")
 	vals := map[string]string{
+		"Organization": c.Config.Organization,
 		"BaseUrl":     c.Config.BaseUrl,
 		"ConsumerKey": c.Config.BitbucketOauthKey,
 	}

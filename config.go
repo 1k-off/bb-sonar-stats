@@ -1,5 +1,7 @@
 package main
 
+import "errors"
+
 type Config struct {
 	BaseUrl string `toml: "baseUrl"`
 	Port string `toml: "port"`
@@ -8,6 +10,7 @@ type Config struct {
 	BitbucketOauthSecret string `toml: "bitbucketOauthSecret"`
 	RepoBranch string `toml: "repoBranch"`
 	SonarConfigPath string `toml: "sonarConfigPath"`
+	Organization string `toml:"organization"`
 }
 
 func NewConfig() *Config{
@@ -16,5 +19,19 @@ func NewConfig() *Config{
 		LogLevel: "debug",
 		RepoBranch: "main",
 		SonarConfigPath: "sonar.json",
+	}
+}
+
+func (c *Config) CheckRequiredValues() error{
+	if c.Organization == "" {
+		return errors.New("You must fill in organization field in config.toml.")
+	} else if c.BitbucketOauthSecret == "" {
+		return errors.New("You must fill in bitbucketOauthSecret field in config.toml.")
+	} else if c.BitbucketOauthKey == "" {
+		return errors.New("You must fill in bitbucketOauthKey field in config.toml.")
+	} else if c.BaseUrl == "" {
+		return errors.New("You must fill in baseUrl field in config.toml.")
+	} else {
+		return nil
 	}
 }

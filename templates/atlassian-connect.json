@@ -1,5 +1,5 @@
 {{define "config"}}{
-    "key": "bb-sonar-stats",
+    "key": "{{.Organization}}-bb-sonar-stats",
     "name": "Bitbucket sonar stats",
     "description": "Pass sonar project stats to bitbucket repo.",
     "vendor": {
