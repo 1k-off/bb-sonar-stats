@@ -69,17 +69,6 @@ func (s *Sonar) GetStats() (SonarStats, error) {
 	s.Stats.IssueStats.InfoValue = s.GetIssuesCountBySeverity(s.Endpoint.Issues.Severity.Info)
 	s.Stats.QualityGate.Text, s.Stats.QualityGate.Color = s.GetQualityGateStatus()
 
-	// Idea for dynamic variables. But we haven't dynamic variables in go.
-
-	//vMetricKey := reflect.ValueOf(s.Endpoint.Component.Coverage.MetricKey)
-	//vMeasureStats := reflect.ValueOf(s.Stats.MeasureStats)
-	//metricKeyValues := make([]interface{}, vMetricKey.NumField())
-	//measureStatsValues := make([]interface{}, vMeasureStats.NumField())
-	//for i := 0; i < vMetricKey.NumField(); i++ {
-	//	metricKeyValues[i] = vMetricKey.Field(i).Interface()
-	//	measureStatsValues[i] = s.GetMeasureStats(projectKey, metricKeyValues[i].(string))
-	//}
-
 	return s.Stats, nil
 }
 

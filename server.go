@@ -80,7 +80,7 @@ func (c *Context) stats(w http.ResponseWriter, r *http.Request) {
 	lp := path.Join(templatesPath, "panel.hbs")
 	repo := strings.Split(r.URL.Query().Get("repoPath"), "/")
 	repoOwner, repoName := repo[0], repo[1]
-	c.SonarServerUrl, c.SonarToken, c.SonarProjectKey = c.GetSonarData(repoOwner, repoName, c.Config.RepoBranch, c.Config.SonarConfigPath)
+	c.SonarServerUrl, c.SonarToken, c.SonarProjectKey = c.GetSonarData(repoOwner, repoName, c.Config.SonarConfigPath)
 	if c.SonarServerUrl != "" && c.SonarProjectKey != "" {
 		s := sonarqube.SonarNewClient(c.SonarServerUrl, c.SonarToken, c.SonarProjectKey)
 		stats, err := s.GetStats()
@@ -160,12 +160,12 @@ func (c *Context) ListenAndServe() {
 	http.ListenAndServe(":"+c.Config.Port, nil)
 }
 
-func (c *Context) GetSonarData(owner, repoName, branch, path string) (server, token, projectKey string) {
+func (c *Context) GetSonarData(owner, repoName, path string) (server, token, projectKey string) {
 	var (
 		sc *sonarqube.SonarConfig
 	)
 	bc := bb.NewBitbucketClient(c.Config.BitbucketOauthKey, c.Config.BitbucketOauthSecret)
-	content, err := bc.GetFileContent(owner, repoName, branch, path)
+	content, err := bc.GetFileContent(owner, repoName, path)
 	if err != nil {
 		c.Logger.Errorf("Can't parse sonar config file. %v", err)
 		return "", "", ""

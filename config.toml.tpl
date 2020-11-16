@@ -5,6 +5,5 @@ organization =
 
 bitbucketOauthKey =
 bitbucketOauthSecret =
-repoBranch = "master"
 
 sonarConfigPath = "sonar.json"

@@ -8,7 +8,6 @@ type Config struct {
 	LogLevel string `toml: "logLevel""`
 	BitbucketOauthKey string `toml: "bitbucketOauthKey"`
 	BitbucketOauthSecret string `toml: "bitbucketOauthSecret"`
-	RepoBranch string `toml: "repoBranch"`
 	SonarConfigPath string `toml: "sonarConfigPath"`
 	Organization string `toml:"organization"`
 }
@@ -17,7 +16,6 @@ func NewConfig() *Config{
 	return &Config{
 		Port: "8080",
 		LogLevel: "debug",
-		RepoBranch: "main",
 		SonarConfigPath: "sonar.json",
 	}
 }
