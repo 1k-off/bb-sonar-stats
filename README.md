@@ -42,7 +42,6 @@ organization = "1node"
 
 bitbucketOauthKey = <bitbucket oauth key>
 bitbucketOauthSecret = <bitbucket oauth secret>
-repoBranch = "master"
 
 sonarConfigPath = "sonar.json"
 ```
@@ -55,7 +54,6 @@ sonarConfigPath = "sonar.json"
 | organization         | Your organization name. You need to fill in this field to make bitbucket app descriptor unique.   |
 | bitbucketOauthKey    | Bitbucket oauth key from oauth key registration.                                                  |
 | bitbucketOauthSecret | Bitbucket oauth secret from oauth key registration.                                               |
-| repoBranch           | Main branch of your repo. For example: `main`, `master`, `production`.                            |
 | sonarConfigPath      | Path to `sonar.json` in your repo. By default application waiting for this file in the repo root. |
 
 ## Building
@@ -64,7 +62,7 @@ sonarConfigPath = "sonar.json"
 
 ## Configuration
 
-This app needs a configuration file called "sonar.json" in the root folder of the master branch of the Bitbucket repository. This file must contain the Sonarqube server or Sonarcloud URL, the project key of Sonar project which should be associated with this repository and token for account that have access to sonarqube project (or without token if sonar peoject is public). Example:
+This app needs a configuration file called "sonar.json" in the root of the main (default) branch of the Bitbucket repository. This file must contain the Sonarqube server or Sonarcloud URL, the project key of Sonar project which should be associated with this repository and token for account that have access to sonarqube project (or without token if sonar peoject is public). Example:
 
 ```json
 {
